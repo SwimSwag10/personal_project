@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Dojo Results</title>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-left d-flex">
+      <h1>Githubpeeker</h1>
+      <p><span class="bi-github align-items-center"></span></p>
+    </div>
+    <div class="info header-right">
+      <h2 class="">Welcome, {{ current_user.first_name }}#{{ current_user.id }}:</h2>
+      <a href="/dashboard">
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" style="box-shadow: 3px 3px white;">
+          <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
+        </svg></p>
+      </a>
+    </div>
+  </div>
+  
+  <div class="row dashboard-content">
+    <div class="col dashboard-style">
+      
+      <form action="/update/message/{{ message.id }}" method="post">
+        <h2>Update Sighting #{{ message.id }}</h2>
+        {% with messages = get_flashed_messages(category_filter=['message']) %}
+          {% if messages %}
+          <div class="alert alert-danger" role="alert">
+            <strong>Incorrect</strong>
+              {% for message in messages %}
+              <p>{{message}}</p>
+              {% endfor %}
+          </div>
+          {% endif %}
+        {% endwith %}
+        <hr class="mb-4">
+    
+        <p class="row">Content:</p>
+        <textarea name="content" cols="50" rows="3" style="border-radius: 10px;" class="form-control">{{ message.content }}</textarea>
+        
+        <input type="submit" name="Submit" class="btn btn-primary">
+      </form>
+
+    </div>
+  </div>
+
+  <div class="header">
+    <div class='console-container'><span id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

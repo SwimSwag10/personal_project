@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Dojo Results</title>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-left d-flex">
+      <h1>Githubpeeker</h1>
+      <p><span class="bi-github align-items-center"></span></p>
+    </div>
+    <div class="info header-right">
+      <h2 class="">Welcome, {{ current_user.first_name }}#{{ current_user.id }}:</h2>
+      <a href="/logout"><span class="btn btn-primary">Log Out</span></a>
+    </div>
+  </div>
+  
+  <div class="row dashboard-content">
+
+    <div class="col dashboard-style">
+      <h2 class="row">{{ message_count }} Message(s) for You</h2>
+      <hr class="mb-4 row">
+      {% for message in all_messages %}
+      <div class="row users">
+        <div class="col-mb">
+          <div class="row">
+            {% if message.user_id == user.id %}
+              <p>You said:</p>
+            {% else %}
+              <p>{{ message.sender_name }}#{{ message.user_id }} said:</p>
+            {% endif %}
+            <p>{{ message.content }}</p>
+          </div>
+        </div>
+        <div>
+          {% if message.user_id == current_user.id %}
+            <a href="/update/message/form/{{ message.id }}"><span class="btn-sm btn-warning col-mb">update</span></a>
+            <a href="/delete/message/{{ message.id }}"><span class="btn-sm btn-warning col-mb">delete</span></a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="col dashboard-style">
+      <h2 class="row">Send Messages</h2>
+      <hr class="mb-4 row">
+      <!-- displaying all the users and a way to create a message to send that user -->
+      {% for user in all_users %}
+        <div class="row users">
+            <a href="/users/{{ user.id }}" class="row dashboard-users">
+              <p>{{ user.first_name }}#{{ user.id }}</p>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg></p>
+            </a>
+          <form action="/create/message" method="post" class="">
+            <div class="row">
+              <textarea name="content" style="width: 70%; height: fit-content;"></textarea>
+              <input type="hidden" name="recipient_id" value="{{ user.id }}">
+              <input type="hidden" name="user_id" value="{{ session['user_id'] }}">
+              <input type="submit" value="Send" class="btn-sm btn-warning" style="height:inherit; width: fit-content">
+            </div>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+    
+  </div>
+
+  <div class="header">
+    <div class='console-container'><span id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

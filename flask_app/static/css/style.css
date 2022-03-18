@@ -1,0 +1,117 @@
+* {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body {
+  background: #f0f2f5;
+  /* background-image: url("../images"); */
+}
+.col {
+  background: #333;
+  margin: 50px auto;
+  width: 40%;
+  height: fit-content;
+  padding: 50px;
+  border-radius: 5px;
+}
+.row {
+  gap: 40px;
+}
+p, h2 {
+  color: white;
+  text-shadow: 2px 2px 3px black;
+}
+h1 {
+  color: gold;
+  text-shadow: 3px 3px 3px black;
+}
+select, option, input {
+  border-radius: 5px;
+  border-color: blueviolet;
+  width: 100%;
+  color: #333;
+}
+#commentbox {
+  height: 100px;
+}
+.dashboard-users {
+  gap: 10px;
+}
+.user_info {
+  color: #333;
+  background: white;
+  border-radius: 5px;
+  border-width: 20px;
+  border-color: blueviolet;
+  padding: 20px 5px;
+}
+.header, .info, #header {
+  padding: 10px 30px 0px 30px;
+  background: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info {
+  margin: 0px;
+  padding: 0px;
+  gap: 50px;
+}
+.dashboard-content {
+  margin: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.dashboard-style {
+  box-shadow: gray 0px 5px 20px;
+}
+.mb-4 {
+  background: gold;
+}
+.dashboard-style:hover {
+  background: linear-gradient(
+    45deg,
+    blueviolet,
+    navy 250%
+  );
+}
+.users {
+  justify-content: space-between;
+  padding: 10px;
+}
+/* testing again */
+
+
+/* testing */
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+.hidden {
+  opacity:0;
+}
+.console-container {
+  font-family:Khula;
+  font-size:3em;
+  text-align:center;
+  height:200px;
+  width:600px;
+  display:block;
+  color:gold;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  text-shadow: 0 5px 10px black;
+  padding-top: 50px;
+}
+.console-underscore {
+   display:inline-block;
+  position:relative;
+  top:-0.14em;
+  left:10px;
+}
+
+/* boostrap icons */
+.bi-github {
+  font-size:50px;
+  color: gold;
+}
