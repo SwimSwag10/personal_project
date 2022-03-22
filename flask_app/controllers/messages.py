@@ -24,6 +24,21 @@ def create_message():
   Message.create_message(data) # inserting the message into the database
   return redirect('/dashboard')
 
+@app.route('/user/create/message', methods=['POST'])
+def user_create_message():
+  if 'user_id' not in session:
+    return redirect('/logout')
+  if not Message.validate_message(request.form):
+    return redirect('/dashboard')
+  data = { 
+    "content": request.form['content'],
+    "user_id": request.form['user_id'],
+    "recipient_id": request.form['recipient_id'],
+  }
+  id = request.form['recipient_id']
+  Message.create_message(data) # inserting the message into the database
+  return redirect(f'/users/{id}')
+
 # READ
 
 # UPDATE

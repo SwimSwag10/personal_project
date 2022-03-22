@@ -68,7 +68,7 @@ def show_one_user(id):
   user_data = {
     'id': session['user_id']
   }
-  return render_template('users.html', current_user=User.get_by_id(user_data), all_messages=Message.get_by_id(user_data), user=User.get_by_id(data))
+  return render_template('users.html', current_user=User.get_by_id(user_data), all_messages=Message.get_by_id(user_data), user=User.get_by_id(data), messages=Message.get_all())
 
 # UPDATE
 

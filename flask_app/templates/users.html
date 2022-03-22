@@ -39,11 +39,22 @@
       {% endfor %}
     </div>
 
+    <div class="col dashboard-style">
+      <h2 class="row">Messages from {{ user.first_name }}#{{ user.id }}</h2>
+      <hr class="mb-4 row">
+      {% for message in messages %}
+        {% if user.id == message.recipient_id %}
+          <h2>Mesage #{{ message.id }}:</h2>
+          <p>{{ message.content }}</p>
+        {% endif %}
+      {% endfor %}
+    </div>
+
 
     <div class="col dashboard-style">
       <h2 class="row">Send Message to {{ user.first_name }}#{{ user.id }}</h2>
       <hr class="mb-4 row">
-      <form action="/create/message" method="post" class="">
+      <form action="/user/create/message" method="post" class="">
         <div class="row">
           <textarea name="content" style="width: 70%; height: fit-content;"></textarea>
           <input type="hidden" name="recipient_id" value="{{ user.id }}">
